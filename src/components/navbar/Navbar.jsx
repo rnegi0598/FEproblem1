@@ -2,9 +2,15 @@ import React from 'react'
 import './navbar.scss';
 const Navbar = () => {
   return (
-    <div>
-      navbar
-    </div>
+    <nav>
+      <h1>Finding Falcone !</h1>
+      <div className="nav-menu">
+        <a href="/">Reset</a>
+        <a href="/">GeekTrust Home</a>
+      </div>
+
+      
+    </nav>
   )
 }
 
