@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { tokenURL, findURL } from "../../constants/constant";
 import ErrorMsg from "../errorMsg/ErrorMsg";
+import { fetchResultErrMsg,incompleteFieldsErrMsg } from "../../constants/constant";
 import "./findFalcon.scss";
 
 const FindFalcon = ({ vehicles, planets }) => {
@@ -43,7 +44,7 @@ const FindFalcon = ({ vehicles, planets }) => {
     //set error if planets and vehicles are not selected for all the destinations
     if (planetsSelected.length !== 4 || vehiclesSelected.length !== 4) {
       // planets or vehicles not selected for all the destination
-      setError("Planets or vehicles for all the destination not selected ");
+      setError(incompleteFieldsErrMsg);
       return;
     }
 
@@ -80,7 +81,7 @@ const FindFalcon = ({ vehicles, planets }) => {
       navigate("/result", { state: result });
     } catch (err) {
       console.log(err.message);
-      setError("Sorry, we encountered an issue while fetching the results. Please try again.");
+      setError(fetchResultErrMsg);
     }
   };
   return (
