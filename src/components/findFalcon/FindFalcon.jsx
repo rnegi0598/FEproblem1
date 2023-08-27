@@ -13,7 +13,7 @@ const FindFalcon = ({ vehicles, planets }) => {
     if (error) {
       timerId = setTimeout(() => {
         setError(null);
-      }, 3000);
+      }, 5000);
     }
 
     return () => {
@@ -79,7 +79,8 @@ const FindFalcon = ({ vehicles, planets }) => {
       }
       navigate("/result", { state: result });
     } catch (err) {
-      setError(err);
+      console.log(err.message);
+      setError("Sorry, we encountered an issue while fetching the results. Please try again.");
     }
   };
   return (

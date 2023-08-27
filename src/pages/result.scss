@@ -1,37 +1,36 @@
-.result-wrapper{
-    padding: 2rem;
-    text-align: center;
-    .sucess{
-        p{
-           
-            margin: 1rem 0;
+.result-wrapper {
+  padding: 2rem;
+  text-align: center;
+  .sucess {
+    p {
+      margin: 1rem 0;
 
-            img{
-                margin: 0 5px;
-            }
-            span{
-                margin: 0 5px;
-                font-size: 1.5rem;
-            }
-
-            span.congratulations{
-                font-size: 2rem;
-                font-weight: 900;
-            }
-            span.planet-name{
-                font-weight: 900;
-                border-bottom: 3px solid black;
-            }
-        }
-    }
-
-    .failure{
+      img {
+        margin: 0 5px;
+      }
+      span {
+        margin: 0 5px;
         font-size: 1.5rem;
-        img{
-            margin: 10px;
-        }
-        p{
-            margin: 10px;
-        }
+      }
+
+      span.congratulations {
+        font-size: 2rem;
+        font-weight: 900;
+      }
+      span.planet-name {
+        font-weight: 900;
+        border-bottom: 3px solid black;
+      }
     }
+  }
+
+  .failure {
+    font-size: 1.5rem;
+    img {
+      margin: 10px;
+    }
+    p {
+      margin: 10px;
+    }
+  }
 }

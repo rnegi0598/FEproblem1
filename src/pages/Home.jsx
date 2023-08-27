@@ -6,11 +6,13 @@ import FindFalcon from "../components/findFalcon/FindFalcon";
 import { totalDestinations } from "../constants/constant";
 import { fetchDataErrMsg } from "../constants/constant";
 import "./home.scss";
-
+import { planetURL, vehicleURL } from "../constants/constant";
 const Home = () => {
   const [planets, setPlanets] = useState([]);
   const [vehicles, setVehicles] = useState([]);
   const [error, setError] = useState(null);
+
+ 
 
   const fetchData = (url, setter) => {
     fetch(url)
@@ -26,9 +28,6 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const planetURL = "https://findfalcone.geektrust.com/planets";
-    const vehicleURL = "https://findfalcone.geektrust.com/vehicles";
-
     fetchData(planetURL, setPlanets);
     fetchData(vehicleURL, setVehicles);
   }, []);
@@ -57,7 +56,7 @@ const Home = () => {
           </div>
         </div>
       ) : null}
-      <FindFalcon vehicles={vehicles} planets={planets} />
+     { !error &&  <FindFalcon vehicles={vehicles} planets={planets} />}
 
       {error && <ErrorMsg msg={fetchDataErrMsg} />}
     </main>
