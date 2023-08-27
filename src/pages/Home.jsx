@@ -33,7 +33,7 @@ const Home = () => {
   }, []);
 
   // console.log(planets);
-  console.log(vehicles);
+  // console.log(vehicles);
 
   return (
     <main>

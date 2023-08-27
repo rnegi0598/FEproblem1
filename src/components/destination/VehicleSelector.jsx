@@ -1,7 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const VehicleSelector = ({ destNumber, vehicles, setVehicles, distance }) => {
+  // when for a destination planet is changed
+  // reset the vehicle radio inputs options
+  const dummyInputRef = useRef(null);
+  useEffect(() => {
+    dummyInputRef.current.checked = true;
   
+    const updatedVehicles = vehicles.map((vehicle) => {
+      if (vehicle.option && vehicle.option.includes(destNumber)) {
+        const updatedOption = vehicle.option.filter(
+          (item) => item != destNumber
+        );
+        return {
+          ...vehicle,
+          total_no: vehicle.total_no + 1,
+          option: updatedOption.length === 0?null:updatedOption,
+        };
+      }else{
+        return vehicle;
+      }
+    });
+
+    setVehicles(updatedVehicles);
+  }, [distance]);
+
   const radioHandler = (e) => {
     //find unchecked radio input value
     //vehicle option is an array
@@ -44,7 +67,6 @@ const VehicleSelector = ({ destNumber, vehicles, setVehicles, distance }) => {
     setVehicles(updatedVehicles);
   };
 
-  // console.log("render");
 
   const disableCondition = (vehicle) => {
     if (vehicle.total_no === 0 || vehicle.max_distance < distance) {
@@ -56,6 +78,9 @@ const VehicleSelector = ({ destNumber, vehicles, setVehicles, distance }) => {
 
   return (
     <div>
+      <div className="dummy-div">
+        <input style={{display:'none'}} type="radio" name={"vehicle" + destNumber} ref={dummyInputRef} />
+      </div>
       {vehicles.map((vehicle) => {
         return (
           <div key={vehicle.name}>
