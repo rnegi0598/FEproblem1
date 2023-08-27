@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 
 const VehicleSelector = ({ destNumber, vehicles, setVehicles, distance }) => {
   // when for a destination planet is changed
-  // reset the vehicle radio inputs options
+  // resets the vehicle radio inputs options
   const dummyInputRef = useRef(null);
+
   useEffect(() => {
     dummyInputRef.current.checked = true;
   
@@ -26,8 +27,8 @@ const VehicleSelector = ({ destNumber, vehicles, setVehicles, distance }) => {
   }, [distance]);
 
   const radioHandler = (e) => {
-    //find unchecked radio input value
-    //vehicle option is an array
+     //Note:vehicle option is an array
+    //finds unchecked radio input value
     const uncheckedVehicle = vehicles.find((vehicle) => {
       //if option is null
       if (!vehicle.option) {
@@ -39,7 +40,8 @@ const VehicleSelector = ({ destNumber, vehicles, setVehicles, distance }) => {
 
     //checked value
     const checkedValue = e.target.value;
-
+    //decrements total_no of unchecked vehicle and increments of checked vehicle
+    //also updates the vehicle selected for current destination
     const updatedVehicles = vehicles.map((vehicle) => {
       if (vehicle.name === checkedValue) {
         const vehicleOption = vehicle.option ? vehicle.option : [];
@@ -66,7 +68,6 @@ const VehicleSelector = ({ destNumber, vehicles, setVehicles, distance }) => {
     });
     setVehicles(updatedVehicles);
   };
-
 
   const disableCondition = (vehicle) => {
     if (vehicle.total_no === 0 || vehicle.max_distance < distance) {

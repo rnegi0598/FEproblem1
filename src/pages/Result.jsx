@@ -1,24 +1,17 @@
 import React from "react";
-import { redirect, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import Failure from "../components/result/Failure";
+import Success from "../components/result/Success";
 
 const Result = () => {
   const location = useLocation();
-  const receivedProps = location.state;
-  console.log(receivedProps);
-  if (receivedProps.status === "false") {
-    const comp = <div>Falcone not found</div>;
-  } else {
-  }
-  // console.log(data);
+  const response = location.state;
   return (
-    <div>
-      {receivedProps.status === "false" && <div>Falcone not found</div>}
-      {receivedProps.status === "success" && (
-        <div>Falcone found at {receivedProps.planet_name} planet</div>
+    <div className="result-wrapper">
+      {response.status === "false" && <Failure />}
+      {response.status === "success" && (
+        <Success planet={response.planet_name} />
       )}
-      {
-        receivedProps.error && <div>{receivedProps.error}</div>
-      }
     </div>
   );
 };

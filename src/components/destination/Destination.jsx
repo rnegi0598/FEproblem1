@@ -1,7 +1,7 @@
 import React from "react";
-import "./destination.scss";
 import PlanetSelector from "./PlanetSelector";
 import VehicleSelector from "./VehicleSelector";
+import "./destination.scss";
 const Destination = ({
   destNumber,
   planets,
@@ -9,7 +9,7 @@ const Destination = ({
   vehicles,
   setVehicles,
 }) => {
-  // planet that is selected for given destination
+  // planet that is selected for a given destination
   const planet = planets.find((planet) => {
     if (planet.option === destNumber) {
       return true;
@@ -17,7 +17,7 @@ const Destination = ({
       return false;
     }
   });
- 
+
   return (
     <div>
       <h3>Destiation {destNumber}</h3>
@@ -32,7 +32,6 @@ const Destination = ({
           vehicles={vehicles}
           setVehicles={setVehicles}
           distance={planet?.distance}
-         
         />
       ) : null}
     </div>

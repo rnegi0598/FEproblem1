@@ -11,14 +11,13 @@ const PlanetSelector = ({destNumber ,planets,setPlanets}) => {
   }) 
 
   //on selecting a planet ,update its option field with current destNumber
-  //also remove  that destNumber from any other planet if having it
+  //also remove  that destNumber from any other planet if present
   const selectHandler = (e) => {
     const value=e.target.value;
     if(!value){
       return ;
     }
     const updatedPlanets=planets.map(planet=>{
-      //remove destNumber from other planets if having 
       if(planet.option===destNumber && planet.name!==value){
         return {...planet,option:null};
       }
@@ -31,11 +30,10 @@ const PlanetSelector = ({destNumber ,planets,setPlanets}) => {
 
     setPlanets(updatedPlanets);
    
-
   };
   return (
     <div>
-      <select name="planet-1"   onChange={selectHandler}>
+      <select name="planet"   onChange={selectHandler}>
         <option value="" style={{display:'none'}}>Select</option>
         {
           planetArr.map((planet)=>{

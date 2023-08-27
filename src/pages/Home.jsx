@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./home.scss";
 import Destination from "../components/destination/Destination";
-import ServerDown from "../components/errorMsg/ServerDown";
-import TimeDisplay from "../components/timeDisplay/TimeDisplay";
-import FindFalconBtn from "../components/findFalcon/FindFalconBtn";
+import ErrorMsg from "../components/errorMsg/ErrorMsg";
+import DisplayTime from "../components/displayTime/DisplayTime";
+import FindFalcon from "../components/findFalcon/FindFalcon";
+import { totalDestinations } from "../constants/constant";
+import { fetchDataErrMsg } from "../constants/constant";
+import "./home.scss";
 
 const Home = () => {
   const [planets, setPlanets] = useState([]);
@@ -14,8 +16,7 @@ const Home = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        //prepare data before setting it to availablePlanets
-        //add option field
+        //prepare data by adding option field before setting it to the setter
         const updatedData = data.map((item) => {
           return { ...item, option: null };
         });
@@ -25,57 +26,40 @@ const Home = () => {
   };
 
   useEffect(() => {
-   
     const planetURL = "https://findfalcone.geektrust.com/planets";
     const vehicleURL = "https://findfalcone.geektrust.com/vehicles";
 
     fetchData(planetURL, setPlanets);
     fetchData(vehicleURL, setVehicles);
-
   }, []);
-
-  // console.log(planets);
-  // console.log(vehicles);
 
   return (
     <main>
       <h2>Select planets you want to search in :</h2>
       {planets.length && vehicles.length ? (
         <div className="destination-wrapper">
-          <Destination
-            destNumber={1}
-            planets={planets}
-            setPlanets={setPlanets}
-            vehicles={vehicles}
-            setVehicles={setVehicles}
-          />
-          <Destination
-            destNumber={2}
-            planets={planets}
-            setPlanets={setPlanets}
-            vehicles={vehicles}
-            setVehicles={setVehicles}
-          />
-          <Destination
-            destNumber={3}
-            planets={planets}
-            setPlanets={setPlanets}
-            vehicles={vehicles}
-            setVehicles={setVehicles}
-          />
-          <Destination
-            destNumber={4}
-            planets={planets}
-            setPlanets={setPlanets}
-            vehicles={vehicles}
-            setVehicles={setVehicles}
-          />
+          {[...Array(totalDestinations)].map((_, destNumber) => {
+            return (
+              <Destination
+                key={destNumber}
+                destNumber={destNumber + 1}
+                planets={planets}
+                setPlanets={setPlanets}
+                vehicles={vehicles}
+                setVehicles={setVehicles}
+              />
+            );
+          })}
         </div>
       ) : null}
-      {error ? <ServerDown /> : null}
-
-      <TimeDisplay vehicles={vehicles} planets={planets}/>
-      <FindFalconBtn vehicles={vehicles} planets={planets}/>
+      {error ? (
+        <ErrorMsg msg={fetchDataErrMsg}/>
+      ) : (
+        <>
+          <DisplayTime vehicles={vehicles} planets={planets} />
+          <FindFalcon vehicles={vehicles} planets={planets} />
+        </>
+      )}
     </main>
   );
 };

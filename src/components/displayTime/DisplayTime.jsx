@@ -1,6 +1,7 @@
 import React from "react";
-import "./timeDisplay.scss";
-const TimeDisplay = ({ vehicles,planets }) => {
+import "./displayTime.scss";
+const DisplayTime = ({ vehicles,planets }) => {
+
   const CalculateTime = () => {
     return vehicles.reduce((totalTime,vehicle)=>{
         if(vehicle.option ){
@@ -16,7 +17,8 @@ const TimeDisplay = ({ vehicles,planets }) => {
     },0);
 
   };
-  return <div className="total-wrapper">total time:{CalculateTime()}</div>;
+
+  return <div className="total-wrapper">Total Time:{CalculateTime()}</div>;
 };
 
-export default TimeDisplay;
+export default DisplayTime;
