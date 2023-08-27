@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./home.scss";
 import Destination from "../components/destination/Destination";
 import ServerDown from "../components/errorMsg/ServerDown";
+import TotalTime from "../components/totalTime/TotalTime";
 
 const Home = () => {
   const [planets, setPlanets] = useState([]);
@@ -71,6 +72,8 @@ const Home = () => {
         </div>
       ) : null}
       {error ? <ServerDown /> : null}
+
+      <TotalTime vehicles={vehicles} planets={planets}/>
     </main>
   );
 };
