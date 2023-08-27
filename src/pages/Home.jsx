@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./home.scss";
 import Destination from "../components/destination/Destination";
 import ServerDown from "../components/errorMsg/ServerDown";
-import TotalTime from "../components/totalTime/TotalTime";
+import TimeDisplay from "../components/timeDisplay/TimeDisplay";
+import FindFalconBtn from "../components/findFalcon/FindFalconBtn";
 
 const Home = () => {
   const [planets, setPlanets] = useState([]);
@@ -73,7 +74,8 @@ const Home = () => {
       ) : null}
       {error ? <ServerDown /> : null}
 
-      <TotalTime vehicles={vehicles} planets={planets}/>
+      <TimeDisplay vehicles={vehicles} planets={planets}/>
+      <FindFalconBtn vehicles={vehicles} planets={planets}/>
     </main>
   );
 };
