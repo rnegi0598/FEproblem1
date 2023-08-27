@@ -3,10 +3,13 @@ import './navbar.scss';
 const Navbar = () => {
   return (
     <nav>
+      
       <h1>Finding Falcone !</h1>
+      <img src="planet.svg"/> 
       <div className="nav-menu">
         <a href="/">Reset</a>
-        <a href="/">GeekTrust Home</a>
+        <span>|</span>
+        <a href="https://www.geektrust.com/" target='_blank'>GeekTrust Home</a>
       </div>
 
       

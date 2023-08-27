@@ -1,7 +1,24 @@
-.total-wrapper{
-    margin: 2em;
+.total-time-wrapper{
+    // background-color: #1B1212;
+    // color: #fff;
+    padding:1rem 1.5rem;
+    margin: 1rem 0;
+    font-weight: 900;
     text-align: center;
-    button{
-        cursor: pointer;
+    width: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span{
+        margin:0 5px;
+    }
+    span.time-label{
+        padding-bottom:5px ;
+        border-bottom: 1px solid white;
+    }
+    span.time{
+        padding-bottom:5px ;
+        font-size: 1.5rem;
     }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import Failure from "../components/result/Failure";
 import Success from "../components/result/Success";
-
+import './result.scss'
 const Result = () => {
   const location = useLocation();
   const response = location.state;

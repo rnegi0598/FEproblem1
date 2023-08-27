@@ -19,8 +19,8 @@ const Destination = ({
   });
 
   return (
-    <div>
-      <h3>Destiation {destNumber}</h3>
+    <div className="destination">
+      <h3>Destination {destNumber}</h3>
       <PlanetSelector
         destNumber={destNumber}
         planets={planets}

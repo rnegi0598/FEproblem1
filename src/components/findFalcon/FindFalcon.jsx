@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { tokenURL, findURL } from "../../constants/constant";
 import ErrorMsg from "../errorMsg/ErrorMsg";
@@ -8,18 +8,18 @@ const FindFalcon = ({ vehicles, planets }) => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(()=>{
+  useEffect(() => {
     let timerId;
-    if(error){
-       timerId=setTimeout(() => {
+    if (error) {
+      timerId = setTimeout(() => {
         setError(null);
       }, 3000);
     }
 
-    return ()=>{
+    return () => {
       clearTimeout(timerId);
-    }
-  },[error])
+    };
+  }, [error]);
 
   const clickHandler = async () => {
     //check if planets and vehicles are selected for all the destinations
@@ -73,9 +73,9 @@ const FindFalcon = ({ vehicles, planets }) => {
       };
       const findResponse = await fetch(findURL, findRequestOptions);
       const result = await findResponse.json();
-      if(result.error){
+      if (result.error) {
         setError(result.error);
-        return ;
+        return;
       }
       navigate("/result", { state: result });
     } catch (err) {
@@ -84,8 +84,11 @@ const FindFalcon = ({ vehicles, planets }) => {
   };
   return (
     <div className="findBtn-wrapper">
-      <button onClick={clickHandler}>Find</button>
-      {error ? <ErrorMsg msg={error}/> : null}
+      <button onClick={clickHandler}>
+        <span>Find</span>
+        <img src="find.svg" />
+      </button>
+      {error ? <ErrorMsg msg={error} /> : null}
     </div>
   );
 };

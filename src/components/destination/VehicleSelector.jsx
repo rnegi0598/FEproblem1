@@ -7,7 +7,7 @@ const VehicleSelector = ({ destNumber, vehicles, setVehicles, distance }) => {
 
   useEffect(() => {
     dummyInputRef.current.checked = true;
-  
+
     const updatedVehicles = vehicles.map((vehicle) => {
       if (vehicle.option && vehicle.option.includes(destNumber)) {
         const updatedOption = vehicle.option.filter(
@@ -16,9 +16,9 @@ const VehicleSelector = ({ destNumber, vehicles, setVehicles, distance }) => {
         return {
           ...vehicle,
           total_no: vehicle.total_no + 1,
-          option: updatedOption.length === 0?null:updatedOption,
+          option: updatedOption.length === 0 ? null : updatedOption,
         };
-      }else{
+      } else {
         return vehicle;
       }
     });
@@ -27,7 +27,7 @@ const VehicleSelector = ({ destNumber, vehicles, setVehicles, distance }) => {
   }, [distance]);
 
   const radioHandler = (e) => {
-     //Note:vehicle option is an array
+    //Note:vehicle option is an array
     //finds unchecked radio input value
     const uncheckedVehicle = vehicles.find((vehicle) => {
       //if option is null
@@ -78,13 +78,18 @@ const VehicleSelector = ({ destNumber, vehicles, setVehicles, distance }) => {
   };
 
   return (
-    <div>
+    <div className="vehicle-wrapper">
       <div className="dummy-div">
-        <input style={{display:'none'}} type="radio" name={"vehicle" + destNumber} ref={dummyInputRef} />
+        <input
+          style={{ display: "none" }}
+          type="radio"
+          name={"vehicle" + destNumber}
+          ref={dummyInputRef}
+        />
       </div>
       {vehicles.map((vehicle) => {
         return (
-          <div key={vehicle.name}>
+          <div key={vehicle.name} className="radio-input-div">
             <input
               type="radio"
               name={"vehicle" + destNumber}
@@ -93,7 +98,7 @@ const VehicleSelector = ({ destNumber, vehicles, setVehicles, distance }) => {
               id={vehicle.name + destNumber}
               onChange={radioHandler}
             />
-            <label htmlFor={vehicle.name + destNumber}>
+            <label htmlFor={vehicle.name + destNumber} className={disableCondition(vehicle)?"disable":""}>
               {vehicle.name}({vehicle.total_no})
             </label>
           </div>

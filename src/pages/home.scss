@@ -1,12 +1,38 @@
-main{
- padding: 2em;
- h2{
+main {
+  padding: 2em;
+  min-height: 90vh;
+
+  h2 {
     text-align: center;
     margin-bottom: 2em;
- }
- .destination-wrapper{
-    display: flex;
-    gap: 2em;
-    justify-content: center;
- }   
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+  .game-wrapper {
+   
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 2rem;
+    .destinations {
+      display: flex;
+      gap: 2em;
+      justify-content: center;
+    }
+  }
+}
+
+.time-find-falcon-section{
+  // border:1px solid black
+}
+
+@media  screen and (max-width:900px) {
+   .game-wrapper{
+      flex-direction: column;
+
+
+      .destinations{
+         flex-wrap: wrap;
+      }
+   }
 }

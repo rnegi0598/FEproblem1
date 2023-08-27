@@ -1,8 +1,9 @@
 import React from "react";
+import './error.scss'
 
 const ErrorMsg = ({msg}) => {
   return (
-    <div>
+    <div className="error-div">
       {msg}
     </div>
   );

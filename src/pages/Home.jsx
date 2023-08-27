@@ -37,29 +37,29 @@ const Home = () => {
     <main>
       <h2>Select planets you want to search in :</h2>
       {planets.length && vehicles.length ? (
-        <div className="destination-wrapper">
-          {[...Array(totalDestinations)].map((_, destNumber) => {
-            return (
-              <Destination
-                key={destNumber}
-                destNumber={destNumber + 1}
-                planets={planets}
-                setPlanets={setPlanets}
-                vehicles={vehicles}
-                setVehicles={setVehicles}
-              />
-            );
-          })}
+        <div className="game-wrapper">
+          <div className="destinations">
+            {[...Array(totalDestinations)].map((_, destNumber) => {
+              return (
+                <Destination
+                  key={destNumber}
+                  destNumber={destNumber + 1}
+                  planets={planets}
+                  setPlanets={setPlanets}
+                  vehicles={vehicles}
+                  setVehicles={setVehicles}
+                />
+              );
+            })}
+          </div>
+          <div className="time-find-falcon-section">
+            <DisplayTime vehicles={vehicles} planets={planets} />
+          </div>
         </div>
       ) : null}
-      {error ? (
-        <ErrorMsg msg={fetchDataErrMsg}/>
-      ) : (
-        <>
-          <DisplayTime vehicles={vehicles} planets={planets} />
-          <FindFalcon vehicles={vehicles} planets={planets} />
-        </>
-      )}
+      <FindFalcon vehicles={vehicles} planets={planets} />
+
+      {error && <ErrorMsg msg={fetchDataErrMsg} />}
     </main>
   );
 };

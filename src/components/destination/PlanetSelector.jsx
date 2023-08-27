@@ -32,7 +32,7 @@ const PlanetSelector = ({destNumber ,planets,setPlanets}) => {
    
   };
   return (
-    <div>
+    <div className="planet-wrapper">
       <select name="planet"   onChange={selectHandler}>
         <option value="" style={{display:'none'}}>Select</option>
         {
